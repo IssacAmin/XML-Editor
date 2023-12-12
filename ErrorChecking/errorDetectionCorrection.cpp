@@ -1,4 +1,4 @@
-#include "errorDetection.h"
+#include "errorDetectionCorrection.h"
 
 vector<tag> ErrorDetection(string readFilePath,vector<string>& fileContent){
 	stack<tag> tags;
@@ -71,6 +71,82 @@ vector<tag> ErrorDetection(string readFilePath,vector<string>& fileContent){
 	}
 	file.close();
 	return singleTags;
+}
+
+void errorCorrection(string writeFilePath, vector<tag> errors,vector<string>& fileContent){
+	for(tag error: errors){
+		if(error.type == OPENING){
+			string missingTag = "</" + error.tag_name + ">";
+			int i,j;
+			bool found = false;
+			for(i = error.line; i < fileContent.size(); i++){
+
+				if(i == error.line)
+					j = error.pos + 1;
+				else
+					j = 0;
+				for(; j < fileContent[i].length(); j++){
+					if(fileContent[i][j] == '<'){
+						found = true;
+						break;
+					}
+				}
+				if(found)
+					break;
+			}
+			if(found){
+				if(j == 0){
+
+					fileContent[i - 1].insert(fileContent[i].length() - 1, missingTag );
+				}
+				else {
+					fileContent[i].insert(j,missingTag);
+				}
+			}
+			else{
+				int end = fileContent[error.line].find(">", error.pos + 1);
+				fileContent[error.line].insert(end + 1, missingTag);
+			}
+		}
+		else if(error.type == CLOSING){
+			string missingTag = "<" + error.tag_name + ">";
+			int i,j;
+			bool found = false;
+			for(i = error.line; i >= 0 ; i--){
+
+				if(i == error.line)
+					j = error.pos - 1;
+				else
+					j = fileContent[i].length() - 1;
+				for(; j >= 0; j--){
+					if(fileContent[i][j] == '>'){
+						found = true;
+						break;
+					}
+				}
+				if(found)
+					break;
+			}
+			if(found){
+
+					fileContent[i].insert(j + 1,missingTag);
+			}
+			else{
+				fileContent[error.line].insert(error.pos - 1, missingTag);
+			}
+		}
+	}
+
+	fstream correctedFile;
+	correctedFile.open(writeFilePath,ios::out);
+	if(correctedFile.is_open()){
+		for(string line: fileContent){
+			correctedFile << line << endl;
+		}
+
+	}
+	correctedFile.close();
+
 }
 
 
