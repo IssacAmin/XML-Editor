@@ -10,13 +10,31 @@
     <height>688</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
    <string>XML_Editor</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>1</horstretch>
+     <verstretch>1</verstretch>
+    </sizepolicy>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="0">
     <item>
      <widget class="QFrame" name="frame_2">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>1</horstretch>
+        <verstretch>1</verstretch>
+       </sizepolicy>
+      </property>
       <property name="styleSheet">
        <string notr="true"/>
       </property>
@@ -26,94 +44,210 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QFrame" name="frame">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>872</width>
-         <height>71</height>
-        </rect>
+      <layout class="QGridLayout" name="gridLayout">
+       <property name="leftMargin">
+        <number>0</number>
        </property>
-       <property name="font">
-        <font>
-         <family>Bahnschrift SemiBold</family>
-         <pointsize>18</pointsize>
-         <bold>true</bold>
-        </font>
+       <property name="topMargin">
+        <number>0</number>
        </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
+       <property name="rightMargin">
+        <number>0</number>
        </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
+       <property name="bottomMargin">
+        <number>0</number>
        </property>
-       <widget class="QWidget" name="">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>20</y>
-          <width>861</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,10,1">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetDefaultConstraint</enum>
+         </property>
          <item>
-          <widget class="QLabel" name="label">
+          <widget class="QFrame" name="frame">
            <property name="font">
             <font>
-             <family>Bahnschrift</family>
-             <pointsize>14</pointsize>
-             <bold>false</bold>
+             <family>Bahnschrift SemiBold</family>
+             <pointsize>18</pointsize>
+             <bold>true</bold>
             </font>
            </property>
-           <property name="styleSheet">
-            <string notr="true"/>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
            </property>
-           <property name="text">
-            <string>File Path</string>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
            </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lineEdit">
-           <property name="font">
-            <font>
-             <family>Bahnschrift</family>
-             <pointsize>12</pointsize>
-             <bold>false</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QLineEdit{
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QLabel" name="label">
+              <property name="font">
+               <font>
+                <family>Bahnschrift</family>
+                <pointsize>14</pointsize>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+              <property name="text">
+               <string>File Path</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lineEdit">
+              <property name="font">
+               <font>
+                <family>Bahnschrift</family>
+                <pointsize>12</pointsize>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLineEdit{
 background: white;
 
 border-radius: 10px;
 padding: 5px;
 }</string>
-           </property>
-           <property name="frame">
-            <bool>true</bool>
-           </property>
+              </property>
+              <property name="frame">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Ignored">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Bahnschrift</family>
+                <pointsize>12</pointsize>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+background-color: qlineargradient(x1: 0, y1: 0.01, x2: 0, y2: 0.5, stop: 0 rgb(230, 230, 255), stop: 1 rgb(0, 170, 255));
+border-style: solid;
+border-color: black;
+border-radius: 10px;
+color: white;
+}
+QPushButton::hover{
+background:rgba(0, 170, 255, 200);
+
+}
+QPushButton::pressed{
+background: rgba(0, 170, 255, 200);
+
+}</string>
+              </property>
+              <property name="text">
+               <string>Open File</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_3">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Ignored">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Bahnschrift</family>
+                <pointsize>12</pointsize>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+background-color: qlineargradient(x1: 0, y1: 0.01, x2: 0, y2: 0.5, stop: 0 rgb(230, 230, 255), stop: 1 rgb(0, 170, 255));
+border-style: solid;
+border-color: black;
+border-radius: 10px;
+color: white;
+}
+QPushButton::hover{
+background:rgba(0, 170, 255, 200);
+
+}
+QPushButton::pressed{
+background: rgba(0, 170, 255, 200);
+
+}</string>
+              </property>
+              <property name="text">
+               <string>Save</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="CodeEditor" name="widget" native="true"/>
+         </item>
+         <item>
+          <widget class="QFrame" name="frame_3">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Ignored">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
            <property name="font">
             <font>
-             <family>Bahnschrift</family>
-             <pointsize>12</pointsize>
-             <bold>false</bold>
+             <pointsize>14</pointsize>
+             <hintingpreference>PreferNoHinting</hintingpreference>
             </font>
            </property>
-           <property name="styleSheet">
-            <string notr="true">QPushButton{
+           <property name="contextMenuPolicy">
+            <enum>Qt::ActionsContextMenu</enum>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QPushButton" name="pushButton_8">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>16</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Bahnschrift</family>
+                <pointsize>12</pointsize>
+                <bold>false</bold>
+                <hintingpreference>PreferDefaultHinting</hintingpreference>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
 background-color: qlineargradient(x1: 0, y1: 0.01, x2: 0, y2: 0.5, stop: 0 rgb(230, 230, 255), stop: 1 rgb(0, 170, 255));
 border-style: solid;
 border-color: black;
@@ -128,374 +262,290 @@ QPushButton::pressed{
 background: rgba(0, 170, 255, 200);
 
 }</string>
-           </property>
-           <property name="text">
-            <string>Open File</string>
-           </property>
+              </property>
+              <property name="text">
+               <string>Check Errors</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_10">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>68</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Bahnschrift</family>
+                <pointsize>12</pointsize>
+                <bold>false</bold>
+                <hintingpreference>PreferDefaultHinting</hintingpreference>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+background-color: qlineargradient(x1: 0, y1: 0.01, x2: 0, y2: 0.5, stop: 0 rgb(230, 230, 255), stop: 1 rgb(0, 170, 255));
+border-style: solid;
+border-color: black;
+border-radius: 10px;
+color: white;
+}
+QPushButton::hover{
+background:rgba(0, 170, 255, 200);
+
+}
+QPushButton::pressed{
+background: rgba(0, 170, 255, 200);
+
+}</string>
+              </property>
+              <property name="text">
+               <string>Correct Errors</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_9">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Bahnschrift</family>
+                <pointsize>12</pointsize>
+                <bold>false</bold>
+                <hintingpreference>PreferDefaultHinting</hintingpreference>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+background-color: qlineargradient(x1: 0, y1: 0.01, x2: 0, y2: 0.5, stop: 0 rgb(230, 230, 255), stop: 1 rgb(0, 170, 255));
+border-style: solid;
+border-color: black;
+border-radius: 10px;
+color: white;
+}
+QPushButton::hover{
+background:rgba(0, 170, 255, 200);
+
+}
+QPushButton::pressed{
+background: rgba(0, 170, 255, 200);
+
+}</string>
+              </property>
+              <property name="text">
+               <string>Prettify</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_5">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Bahnschrift</family>
+                <pointsize>12</pointsize>
+                <bold>false</bold>
+                <hintingpreference>PreferDefaultHinting</hintingpreference>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+background-color: qlineargradient(x1: 0, y1: 0.01, x2: 0, y2: 0.5, stop: 0 rgb(230, 230, 255), stop: 1 rgb(0, 170, 255));
+border-style: solid;
+border-color: black;
+border-radius: 10px;
+color: white;
+}
+QPushButton::hover{
+background:rgba(0, 170, 255, 200);
+
+}
+QPushButton::pressed{
+background: rgba(0, 170, 255, 200);
+
+}</string>
+              </property>
+              <property name="text">
+               <string>Minify</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_6">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Bahnschrift</family>
+                <pointsize>12</pointsize>
+                <bold>false</bold>
+                <hintingpreference>PreferDefaultHinting</hintingpreference>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+background-color: qlineargradient(x1: 0, y1: 0.01, x2: 0, y2: 0.5, stop: 0 rgb(230, 230, 255), stop: 1 rgb(0, 170, 255));
+border-style: solid;
+border-color: black;
+border-radius: 10px;
+color: white;
+}
+QPushButton::hover{
+background:rgba(0, 170, 255, 200);
+
+}
+QPushButton::pressed{
+background: rgba(0, 170, 255, 200);
+
+}</string>
+              </property>
+              <property name="text">
+               <string>JSON</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_7">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Bahnschrift</family>
+                <pointsize>12</pointsize>
+                <bold>false</bold>
+                <hintingpreference>PreferDefaultHinting</hintingpreference>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+background-color: qlineargradient(x1: 0, y1: 0.01, x2: 0, y2: 0.5, stop: 0 rgb(230, 230, 255), stop: 1 rgb(0, 170, 255));
+border-style: solid;
+border-color: black;
+border-radius: 10px;
+color: white;
+}
+QPushButton::hover{
+background:rgba(0, 170, 255, 200);
+
+}
+QPushButton::pressed{
+background: rgba(0, 170, 255, 200);
+
+}</string>
+              </property>
+              <property name="text">
+               <string>Compress</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_4">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Bahnschrift</family>
+                <pointsize>12</pointsize>
+                <bold>false</bold>
+                <hintingpreference>PreferDefaultHinting</hintingpreference>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+background-color: qlineargradient(x1: 0, y1: 0.01, x2: 0, y2: 0.5, stop: 0 rgb(230, 230, 255), stop: 1 rgb(0, 170, 255));
+border-style: solid;
+border-color: black;
+border-radius: 10px;
+color: white;
+}
+QPushButton::hover{
+background:rgba(0, 170, 255, 200);
+
+}
+QPushButton::pressed{
+background: rgba(0, 170, 255, 200);
+
+}</string>
+              </property>
+              <property name="text">
+               <string>Decompress</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_2">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Bahnschrift</family>
+                <pointsize>12</pointsize>
+                <bold>false</bold>
+                <hintingpreference>PreferDefaultHinting</hintingpreference>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+background-color: qlineargradient(x1: 0, y1: 0.01, x2: 0, y2: 0.5, stop: 0 rgb(230, 230, 255), stop: 1 rgb(0, 170, 255));
+border-style: solid;
+border-color: black;
+border-radius: 10px;
+color: white;
+}
+QPushButton::hover{
+background:rgba(0, 170, 255, 200);
+
+}
+QPushButton::pressed{
+background: rgba(0, 170, 255, 200);
+
+}</string>
+              </property>
+              <property name="text">
+               <string>Find</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </item>
         </layout>
-       </widget>
-      </widget>
-      <widget class="QFrame" name="frame_3">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>620</y>
-         <width>871</width>
-         <height>50</height>
-        </rect>
-       </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>14</pointsize>
-         <hintingpreference>PreferNoHinting</hintingpreference>
-        </font>
-       </property>
-       <property name="contextMenuPolicy">
-        <enum>Qt::ActionsContextMenu</enum>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QPushButton" name="pushButton_8">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Ignored">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>16</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>Bahnschrift</family>
-            <pointsize>12</pointsize>
-            <bold>false</bold>
-            <hintingpreference>PreferDefaultHinting</hintingpreference>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton{
-background-color: qlineargradient(x1: 0, y1: 0.01, x2: 0, y2: 0.5, stop: 0 rgb(230, 230, 255), stop: 1 rgb(0, 170, 255));
-border-style: solid;
-border-color: black;
-border-radius: 10px;
-color: white;
-}
-QPushButton::hover{
-background:rgba(0, 170, 255, 200);
-
-}
-QPushButton::pressed{
-background: rgba(0, 170, 255, 200);
-
-}</string>
-          </property>
-          <property name="text">
-           <string>Check Errors</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_10">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>68</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>Bahnschrift</family>
-            <pointsize>12</pointsize>
-            <bold>false</bold>
-            <hintingpreference>PreferDefaultHinting</hintingpreference>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton{
-background-color: qlineargradient(x1: 0, y1: 0.01, x2: 0, y2: 0.5, stop: 0 rgb(230, 230, 255), stop: 1 rgb(0, 170, 255));
-border-style: solid;
-border-color: black;
-border-radius: 10px;
-color: white;
-}
-QPushButton::hover{
-background:rgba(0, 170, 255, 200);
-
-}
-QPushButton::pressed{
-background: rgba(0, 170, 255, 200);
-
-}</string>
-          </property>
-          <property name="text">
-           <string>Correct Errors</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_9">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Ignored">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <family>Bahnschrift</family>
-            <pointsize>12</pointsize>
-            <bold>false</bold>
-            <hintingpreference>PreferDefaultHinting</hintingpreference>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton{
-background-color: qlineargradient(x1: 0, y1: 0.01, x2: 0, y2: 0.5, stop: 0 rgb(230, 230, 255), stop: 1 rgb(0, 170, 255));
-border-style: solid;
-border-color: black;
-border-radius: 10px;
-color: white;
-}
-QPushButton::hover{
-background:rgba(0, 170, 255, 200);
-
-}
-QPushButton::pressed{
-background: rgba(0, 170, 255, 200);
-
-}</string>
-          </property>
-          <property name="text">
-           <string>Prettify</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_5">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Ignored">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <family>Bahnschrift</family>
-            <pointsize>12</pointsize>
-            <bold>false</bold>
-            <hintingpreference>PreferDefaultHinting</hintingpreference>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton{
-background-color: qlineargradient(x1: 0, y1: 0.01, x2: 0, y2: 0.5, stop: 0 rgb(230, 230, 255), stop: 1 rgb(0, 170, 255));
-border-style: solid;
-border-color: black;
-border-radius: 10px;
-color: white;
-}
-QPushButton::hover{
-background:rgba(0, 170, 255, 200);
-
-}
-QPushButton::pressed{
-background: rgba(0, 170, 255, 200);
-
-}</string>
-          </property>
-          <property name="text">
-           <string>Minify</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_6">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Ignored">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <family>Bahnschrift</family>
-            <pointsize>12</pointsize>
-            <bold>false</bold>
-            <hintingpreference>PreferDefaultHinting</hintingpreference>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton{
-background-color: qlineargradient(x1: 0, y1: 0.01, x2: 0, y2: 0.5, stop: 0 rgb(230, 230, 255), stop: 1 rgb(0, 170, 255));
-border-style: solid;
-border-color: black;
-border-radius: 10px;
-color: white;
-}
-QPushButton::hover{
-background:rgba(0, 170, 255, 200);
-
-}
-QPushButton::pressed{
-background: rgba(0, 170, 255, 200);
-
-}</string>
-          </property>
-          <property name="text">
-           <string>JSON</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_7">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Ignored">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <family>Bahnschrift</family>
-            <pointsize>12</pointsize>
-            <bold>false</bold>
-            <hintingpreference>PreferDefaultHinting</hintingpreference>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton{
-background-color: qlineargradient(x1: 0, y1: 0.01, x2: 0, y2: 0.5, stop: 0 rgb(230, 230, 255), stop: 1 rgb(0, 170, 255));
-border-style: solid;
-border-color: black;
-border-radius: 10px;
-color: white;
-}
-QPushButton::hover{
-background:rgba(0, 170, 255, 200);
-
-}
-QPushButton::pressed{
-background: rgba(0, 170, 255, 200);
-
-}</string>
-          </property>
-          <property name="text">
-           <string>Compress</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_4">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Ignored">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <family>Bahnschrift</family>
-            <pointsize>12</pointsize>
-            <bold>false</bold>
-            <hintingpreference>PreferDefaultHinting</hintingpreference>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton{
-background-color: qlineargradient(x1: 0, y1: 0.01, x2: 0, y2: 0.5, stop: 0 rgb(230, 230, 255), stop: 1 rgb(0, 170, 255));
-border-style: solid;
-border-color: black;
-border-radius: 10px;
-color: white;
-}
-QPushButton::hover{
-background:rgba(0, 170, 255, 200);
-
-}
-QPushButton::pressed{
-background: rgba(0, 170, 255, 200);
-
-}</string>
-          </property>
-          <property name="text">
-           <string>Decompress</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_2">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <family>Bahnschrift</family>
-            <pointsize>12</pointsize>
-            <bold>false</bold>
-            <hintingpreference>PreferDefaultHinting</hintingpreference>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton{
-background-color: qlineargradient(x1: 0, y1: 0.01, x2: 0, y2: 0.5, stop: 0 rgb(230, 230, 255), stop: 1 rgb(0, 170, 255));
-border-style: solid;
-border-color: black;
-border-radius: 10px;
-color: white;
-}
-QPushButton::hover{
-background:rgba(0, 170, 255, 200);
-
-}
-QPushButton::pressed{
-background: rgba(0, 170, 255, 200);
-
-}</string>
-          </property>
-          <property name="text">
-           <string>Find</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="CodeEditor" name="widget" native="true">
-       <property name="geometry">
-        <rect>
-         <x>-1</x>
-         <y>69</y>
-         <width>871</width>
-         <height>551</height>
-        </rect>
-       </property>
-      </widget>
+       </item>
+      </layout>
      </widget>
     </item>
    </layout>
