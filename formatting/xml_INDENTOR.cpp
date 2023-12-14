@@ -14,7 +14,7 @@ void xmlindentor(fstream& myfile ){
     			string str ="/";
     			size_t found = element.find(str);
     			if(found!= string::npos){
-    				indent=indent;
+                    indent = indent;
 				}
 				else{
 					++indent;
@@ -22,7 +22,7 @@ void xmlindentor(fstream& myfile ){
         }
         	lines.push_back(edited_line);
 		}
-			for(int i=0;i<lines.size();i++){
+        for(int i=0;i<(int) lines.size();i++){
 				cout<<lines[i]<<endl;
 			}
 }

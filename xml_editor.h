@@ -10,6 +10,8 @@
 #include <QString>
 #include <QTextStream>
 #include <QMessageBox>
+#include "ErrorChecking/errorDetectionCorrection.h"
+#include <string>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class XML_Editor;
@@ -26,6 +28,12 @@ public:
 
 private slots:
     void on_pushButton_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_8_clicked();
+
+    void on_pushButton_10_clicked();
 
 private:
     Ui::XML_Editor *ui;

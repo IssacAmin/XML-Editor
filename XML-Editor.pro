@@ -9,14 +9,26 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    ErrorChecking/errorDetectionCorrection.cpp \
+    TreeStructure/Node.cpp \
+    TreeStructure/xmlTree.cpp \
     codeeditor.cpp \
+    formatting/xml_INDENTOR.cpp \
     linenumberarea.cpp \
     main.cpp \
+    minifying/xml_minifier.cpp \
+    utilities/utilities.cpp \
     xml_editor.cpp
 
 HEADERS += \
+    ErrorChecking/errorDetectionCorrection.h \
+    TreeStructure/Node.h \
+    TreeStructure/xmlTree.h \
     codeeditor.h \
+    formatting/xml_INDENTOR.h \
     linenumberarea.h \
+    minifying/xml_minifier.h \
+    utilities/utilities.h \
     xml_editor.h
 
 FORMS += \
