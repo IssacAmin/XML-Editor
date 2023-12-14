@@ -6,6 +6,7 @@
 #include <stack>
 #include <vector>
 #include <iostream>
+#include <sstream>
 using namespace std;
 
 typedef enum {
@@ -19,9 +20,9 @@ typedef struct{
 } tag;
 
 
-void errorCorrection(string writeFilePath, vector<tag> errors,vector<string>& fileContent);
+string errorCorrection(vector<tag> errors,vector<string>& fileContent);
 bool isOnStack(stack<tag>& st, tag current_tag);
-vector<tag> ErrorDetection(string readFilePath, vector<string>& fileContent);
+vector<tag> ErrorDetection(string fileText, vector<string>& fileContent);
 tag openTag(string& line, int lineIndex,int start);
 tag closingTag(string& line, int lineIndex,int start );
 

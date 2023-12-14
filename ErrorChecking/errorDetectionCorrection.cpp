@@ -1,17 +1,18 @@
 #include "errorDetectionCorrection.h"
 
-vector<tag> ErrorDetection(string readFilePath,vector<string>& fileContent){
+vector<tag> ErrorDetection(string fileText,vector<string>& fileContent){
 	stack<tag> tags;
 	vector<tag> singleTags;
 	string line;
+
 	int lineIndex = 0;
-	fstream file;
-	file.open(readFilePath, ios::in);
-	if(!file.is_open()){
+	if(fileText.empty()){
 		cout << "File doesn't exist";
 		return singleTags;
+
 	}
-	while(getline(file,line)){
+    istringstream fileStream(fileText);
+	while(getline(fileStream,line)){
 		fileContent.push_back(line);
 		int tagIndex = 0;
 
@@ -69,23 +70,22 @@ vector<tag> ErrorDetection(string readFilePath,vector<string>& fileContent){
 		singleTags.push_back(tags.top());
 		tags.pop();
 	}
-	file.close();
 	return singleTags;
 }
 
-void errorCorrection(string writeFilePath, vector<tag> errors,vector<string>& fileContent){
+string errorCorrection( vector<tag> errors,vector<string>& fileContent){
 	for(tag error: errors){
 		if(error.type == OPENING){
 			string missingTag = "</" + error.tag_name + ">";
 			int i,j;
 			bool found = false;
-            for(i = error.line; i < (int)fileContent.size(); i++){
+			for(i = error.line; i < fileContent.size(); i++){
 
 				if(i == error.line)
 					j = error.pos + 1;
 				else
 					j = 0;
-                for(; j <(int) fileContent[i].length(); j++){
+				for(; j < fileContent[i].length(); j++){
 					if(fileContent[i][j] == '<'){
 						found = true;
 						break;
@@ -137,16 +137,11 @@ void errorCorrection(string writeFilePath, vector<tag> errors,vector<string>& fi
 		}
 	}
 
-	fstream correctedFile;
-	correctedFile.open(writeFilePath,ios::out);
-	if(correctedFile.is_open()){
+	string correctedFile = "";
 		for(string line: fileContent){
-			correctedFile << line << endl;
+			correctedFile = correctedFile + line + "\n";
 		}
-
-	}
-	correctedFile.close();
-
+		return correctedFile;
 }
 
 
