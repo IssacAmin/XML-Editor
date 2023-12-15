@@ -1,8 +1,7 @@
 
 #include "XML_parsing.h"
 
-void XML_parsing(xmlTree& tree, fstream& file){
-	fstream myFile;
+void XML_parsing(xmlTree& tree, string& file){
 	string line;
 	vector<string> elements = oneElementPerLine(file);
 	for(string element: elements){
