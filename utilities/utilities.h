@@ -5,7 +5,7 @@
 #include <vector>
 using namespace std;
 
-vector<string> oneElementPerLine(fstream& file);
+vector<string> oneElementPerLine(string& xml_content);
 bool isData(char x);
 string eraseSpaces(string& str);
 bool isLeaf(string line, int start);

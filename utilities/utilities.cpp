@@ -18,75 +18,68 @@ string eraseSpaces(string& str) {
 }
 
 
-vector<string> oneElementPerLine(fstream& file){
-	string line;
-	string data;
-	// Read the entire file
-	while (getline(file, line)) {
-		data += line;  // Append each line to xmlData string
-	}
-	bool insideTag = false;     // Flag to track if currently inside a tag
-	bool insideData = false;    // Flag to track if currently inside data
-	bool outsideTag = false;    // Flag to track if currently outside a tag
-	bool outsideData = false;   // Flag to track if currently outside data
-	vector<string> xmlElements; // Vector to store XML elements
-	string currentElement = ""; // String to store the current XML element being parsed
-	string tempData = "";       // Temporary string to store data characters
+vector<string> oneElementPerLine(string& xml_content) {
+    bool insideTag = false;     // Flag to track if currently inside a tag
+    bool insideData = false;    // Flag to track if currently inside data
+    bool outsideTag = false;    // Flag to track if currently outside a tag
+    bool outsideData = false;   // Flag to track if currently outside data
+    vector<string> xmlElements; // Vector to store XML elements
+    string currentElement = ""; // String to store the current XML element being parsed
+    string tempData = "";       // Temporary string to store data characters
 
-	for (size_t i = 0; i < data.length(); i++) {
-		// Add Begin of Tag
-		if (data[i] == '<') {
-			insideTag = true;     // Set insideTag flag to true
-			outsideTag = false;   // Set outsideTag flag to false
-			insideData = false;   // Set insideData flag to false
-			outsideData = false;  // Set outsideData flag to false
-			if (!currentElement.empty()) {
-				xmlElements.push_back(eraseSpaces(currentElement)); // Add currentElement to xmlElements vector after removing spaces
-				currentElement.clear();                             // Clear currentElement string
-			}
-		}
+    for (size_t i = 0; i < xml_content.length(); i++) {
+        // Add Begin of Tag
+        if (xml_content[i] == '<') {
+            insideTag = true;      // Set insideTag flag to true
+            outsideTag = false;    // Set outsideTag flag to false
+            insideData = false;    // Set insideData flag to false
+            outsideData = false;   // Set outsideData flag to false
+            if (!currentElement.empty()) {
+                xmlElements.push_back(eraseSpaces(currentElement)); // Add currentElement to xmlElements vector after removing spaces
+                currentElement.clear();                              // Clear currentElement string
+            }
+        }
 
-		// Add end of Tag
-		else if (data[i] == '>') {
-			insideTag = false;    // Set insideTag flag to false
-			outsideTag = true;    // Set outsideTag flag to true
-			insideData = false;   // Set insideData flag to false
-			outsideData = false;  // Set outsideData flag to false
-			currentElement += data[i];          // Add '>' to currentElement string
-			xmlElements.push_back(currentElement); // Add currentElement to xmlElements vector
-			currentElement.clear();              // Clear currentElement string
-		}
+        // Add end of Tag
+        else if (xml_content[i] == '>') {
+            insideTag = false;     // Set insideTag flag to false
+            outsideTag = true;     // Set outsideTag flag to true
+            insideData = false;    // Set insideData flag to false
+            outsideData = false;   // Set outsideData flag to false
+            currentElement += xml_content[i];          // Add '>' to currentElement string
+            xmlElements.push_back(currentElement);    // Add currentElement to xmlElements vector
+            currentElement.clear();                    // Clear currentElement string
+        }
 
-		// Get Data characters and the middle spaces
-		if (isData(data[i]) && !insideTag) {
-			outsideTag = false;   // Set outsideTag flag to false
-			insideData = true;    // Set insideData flag to true
-			outsideData = false;  // Set outsideData flag to false
-			currentElement += tempData;  // Add tempData to currentElement string
-			tempData.clear();            // Clear tempData string
-		}
+        // Get Data characters and the middle spaces
+        if (isData(xml_content[i]) && !insideTag) {
+            outsideTag = false;    // Set outsideTag flag to false
+            insideData = true;     // Set insideData flag to true
+            outsideData = false;   // Set outsideData flag to false
+            currentElement += tempData;  // Add tempData to currentElement string
+            tempData.clear();            // Clear tempData string
+        }
 
-		// Add Spaces to Temporary string to check if they are mid spaces or last spaces
-		if ((data[i] == ' ' || data[i] == '\n' || data[i] == '\t') && insideData) {
-			insideTag = false;    // Set insideTag flag to false
-			insideData = false;   // Set insideData flag to false
-			outsideData = true;   // Set outsideData flag to true
-			tempData += data[i];  // Add space character to tempData string
-		}
+        // Add Spaces to Temporary string to check if they are mid spaces or last spaces
+        if ((xml_content[i] == ' ' || xml_content[i] == '\n' || xml_content[i] == '\t') && insideData) {
+            insideTag = false;     // Set insideTag flag to false
+            insideData = false;    // Set insideData flag to false
+            outsideData = true;    // Set outsideData flag to true
+            tempData += xml_content[i]; // Add space character to tempData string
+        }
 
-		// Add Tag Names and Attributes
-		if (insideTag) {
-			currentElement += data[i];  // Add current character to currentElement string
-		}
+        // Add Tag Names and Attributes
+        if (insideTag) {
+            currentElement += xml_content[i];  // Add current character to currentElement string
+        }
 
-		// Add Tag Value without begin (Spaces or \t or \n)
-		if (insideData && !outsideTag) {
-			currentElement += data[i];  // Add current character to currentElement string
-		}
-	}
+        // Add Tag Value without begin (Spaces or \t or \n)
+        if (insideData && !outsideTag) {
+            currentElement += xml_content[i];  // Add current character to currentElement string
+        }
+    }
 
-
-	return xmlElements;
+    return xmlElements;
 }
 
 bool isLeaf(string line, int start){
