@@ -4,6 +4,7 @@
 
 //global vars
 vector<string> fileContent;
+vector<tag> errors;
 
 XML_Editor::XML_Editor(QWidget *parent)
     : QMainWindow(parent)
@@ -19,6 +20,27 @@ XML_Editor::~XML_Editor()
     delete ui;
 }
 
+string XML_Editor::getXmlText(string filePath)
+{
+    if(filePath == "")
+    {
+        QFile file(QString::fromStdString(filePath));\
+            if (!file.open(QFile::ReadOnly | QFile::Text)){
+            return "";
+        }
+        QTextStream in(&file);
+        QString text = in.readAll();
+        return text.toStdString();
+    }
+    else
+    {
+        return ui->widget->toPlainText().toStdString();
+    }
+
+}
+
+
+//open file button
 void XML_Editor::on_pushButton_clicked()
 {
     QString filePath = ui->lineEdit->text();
@@ -33,27 +55,34 @@ void XML_Editor::on_pushButton_clicked()
 
 }
 
-
+//save file button
 void XML_Editor::on_pushButton_3_clicked()
 {
     QString filePath = ui->lineEdit->text();
-    QFile file(filePath);\
-        if (!file.open(QFile::WriteOnly | QFile::Text)){
-        QMessageBox::warning(this, "title", "file not found");
+    if(filePath == "")
+    {
+         QMessageBox::warning(this, "title", "File path is not Specified.");
     }
-    QTextStream out(&file);
-    QString text = ui->widget->toPlainText();
-    out<<text;
-    file.flush();
-    file.close();
+    else
+    {
+        QFile file(filePath);\
+            if (!file.open(QFile::WriteOnly | QFile::Text)){
+            QMessageBox::warning(this, "title", "file not found");
+        }
+        QTextStream out(&file);
+        QString text = ui->widget->toPlainText();
+        out<<text;
+        file.flush();
+        file.close();
+    }
 }
 
-
+//Error checking button
 void XML_Editor::on_pushButton_8_clicked()
 {
     QString filePath = ui->lineEdit->text();
-
-    vector<tag> errors = ErrorDetection(filePath.toStdString(),fileContent);
+    getXmlText(filePath.toStdString());
+    errors = ErrorDetection(filePath.toStdString(),fileContent);
 
     ui->widget->setLineWrapMode(QPlainTextEdit::NoWrap);
 
@@ -76,7 +105,7 @@ void XML_Editor::on_pushButton_8_clicked()
     QString msg = "";
     for(int i = 0; i < (int) errors.size();i++)
     {
-        msg += "error at line " + to_string(errors[i].line) + ": Missing" + (errors[i].type== OPENING?" OPENING TAG\n":" CLSING TAG\n");
+        msg += "error at line " + to_string(errors[i].line) + ": Missing" + (errors[i].type== OPENING?" OPENING TAG\n":" CLOSING TAG\n");
     }
     if(msg=="")
         QMessageBox::warning(this, "Errors", "No errors");
@@ -85,7 +114,7 @@ void XML_Editor::on_pushButton_8_clicked()
 
 }
 
-
+//Error Correction
 void XML_Editor::on_pushButton_10_clicked()
 {
 

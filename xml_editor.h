@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include "ui_xml_editor.h"
-#include "codeeditor.h"
+#include "customWidgets/codeeditor.h"
 #include <QFile>
 #include <Qdir>
 #include <QDebug>
@@ -34,6 +34,8 @@ private slots:
     void on_pushButton_8_clicked();
 
     void on_pushButton_10_clicked();
+
+    string getXmlText(string filePath);
 
 private:
     Ui::XML_Editor *ui;

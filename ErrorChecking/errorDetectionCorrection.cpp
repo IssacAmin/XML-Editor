@@ -79,13 +79,13 @@ string errorCorrection( vector<tag> errors,vector<string>& fileContent){
 			string missingTag = "</" + error.tag_name + ">";
 			int i,j;
 			bool found = false;
-			for(i = error.line; i < fileContent.size(); i++){
+            for(i = error.line; i <(int) fileContent.size(); i++){
 
 				if(i == error.line)
 					j = error.pos + 1;
 				else
 					j = 0;
-				for(; j < fileContent[i].length(); j++){
+                for(; j <(int) fileContent[i].length(); j++){
 					if(fileContent[i][j] == '<'){
 						found = true;
 						break;
