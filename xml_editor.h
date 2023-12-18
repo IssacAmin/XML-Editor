@@ -35,7 +35,7 @@ private slots:
 
     void on_pushButton_10_clicked();
 
-    string getXmlText(string filePath);
+    string getXmlText();
 
 private:
     Ui::XML_Editor *ui;

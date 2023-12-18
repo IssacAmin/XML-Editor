@@ -20,23 +20,9 @@ XML_Editor::~XML_Editor()
     delete ui;
 }
 
-string XML_Editor::getXmlText(string filePath)
+string XML_Editor::getXmlText()
 {
-    if(filePath == "")
-    {
-        QFile file(QString::fromStdString(filePath));\
-            if (!file.open(QFile::ReadOnly | QFile::Text)){
-            return "";
-        }
-        QTextStream in(&file);
-        QString text = in.readAll();
-        return text.toStdString();
-    }
-    else
-    {
-        return ui->widget->toPlainText().toStdString();
-    }
-
+    return ui->widget->toPlainText().toStdString();
 }
 
 
@@ -81,8 +67,8 @@ void XML_Editor::on_pushButton_3_clicked()
 void XML_Editor::on_pushButton_8_clicked()
 {
     QString filePath = ui->lineEdit->text();
-    getXmlText(filePath.toStdString());
-    errors = ErrorDetection(filePath.toStdString(),fileContent);
+    string fileText = getXmlText();
+    errors = ErrorDetection(fileText,fileContent);
 
     ui->widget->setLineWrapMode(QPlainTextEdit::NoWrap);
 
@@ -117,6 +103,12 @@ void XML_Editor::on_pushButton_8_clicked()
 //Error Correction
 void XML_Editor::on_pushButton_10_clicked()
 {
+    if((int)fileContent.size() == 0)
+    {
+        string fileText = getXmlText();
+        errors = ErrorDetection(fileText,fileContent);
+    }
+
    string xmlCorrectedText = errorCorrection(errors,fileContent);
    ui->widget->setPlainText(QString::fromStdString(xmlCorrectedText));
 }
