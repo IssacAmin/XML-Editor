@@ -117,6 +117,7 @@ void XML_Editor::on_pushButton_8_clicked()
 //Error Correction
 void XML_Editor::on_pushButton_10_clicked()
 {
-
+   string xmlCorrectedText = errorCorrection(errors,fileContent);
+   ui->widget->setPlainText(QString::fromStdString(xmlCorrectedText));
 }
 
