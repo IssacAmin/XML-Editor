@@ -23,7 +23,7 @@ string decode(Tree* root , int& index ,string file_data){
 
 }
 
-void file_decompress(){
+string file_decompress(){
     ofstream output_file("Decompressed.xml");
     int index = -1;
     string decompressed_output = "";
@@ -34,4 +34,5 @@ void file_decompress(){
          output_file << decompressed_output[i];
     }
      output_file.close();
+    return decompressed_output;
 }
