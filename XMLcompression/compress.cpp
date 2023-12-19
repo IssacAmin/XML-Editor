@@ -15,7 +15,7 @@ major steps of huffman compression technique:
 using namespace std;
 priority_queue <Tree*,vector<Tree*>,compare> heap;
 string strBuffer;
-vector<char> data; // creating vector of characters to store all the characters inside the file
+vector<char> text; // creating vector of characters to store all the characters inside the file
 Tree* root; // root of huffman tree which contains the data and their frequencies
 // unordered map for storing the codes of each character inside the map
 unordered_map <char,string> huffman_code ;
@@ -60,7 +60,7 @@ void form_priorityQueue(){
 	// creating an unordered hash map to store frequencies of characters inside the file.
 	unordered_map<char,int> char_frequency;
 
-	for(char c : data ) {
+    for(char c : text ) {
 		// calculating the frequency of each character inside the file and storing it in the map
 		char_frequency[c]++;
 	}
@@ -114,7 +114,7 @@ void compress(string File_data , string fileName){
 	// empty string to store the encoded data inside it and write inside the file
 	string compressed_data = "";
 
-	for(char c : data)
+    for(char c : text)
 		// getting code of each character from the map and st
 		compressed_data += huffman_code[c];
 

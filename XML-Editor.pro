@@ -12,17 +12,20 @@ SOURCES += \
     ErrorChecking/errorDetectionCorrection.cpp \
     TreeStructure/Node.cpp \
     TreeStructure/xmlTree.cpp \
+    XMLcompression/compress.cpp \
     codeeditor.cpp \
     formatting/xml_INDENTOR.cpp \
     linenumberarea.cpp \
     main.cpp \
     minifying/xml_minifier.cpp \
     utilities/utilities.cpp \
+    xmlToJson/xmltojson.cpp \
     xml_editor.cpp \
     XML_parsing/XML_parsing.cpp \
 
 HEADERS += \
     ErrorChecking/errorDetectionCorrection.h \
+    XMLcompression/compress.h \
     codeeditor.h \
     TreeStructure/Node.h \
     TreeStructure/xmlTree.h \
@@ -30,6 +33,7 @@ HEADERS += \
     linenumberarea.h \
     minifying/xml_minifier.h \
     utilities/utilities.h \
+    xmlToJson/xmltojson.h \
     xml_editor.h \
     XML_parsing/XML_parsing.h \
 

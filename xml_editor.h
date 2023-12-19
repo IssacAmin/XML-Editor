@@ -15,6 +15,8 @@
 #include "formatting/xml_INDENTOR.h"
 #include "minifying/xml_minifier.h"
 #include <sstream>
+#include "xmlToJson/xmltojson.h"
+#include "XMLcompression/compress.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class XML_Editor;

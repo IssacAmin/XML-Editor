@@ -5,7 +5,7 @@
 //global vars
 vector<string> fileContent;
 vector<tag> errors;
-bool isXML;
+bool isXML = true;
 
 
 
@@ -33,10 +33,9 @@ string XML_Editor::getXmlText()
 void XML_Editor::on_pushButton_clicked()
 {
     QString filePath = ui->lineEdit->text();
-    if(filePath.toStdString().substr((filePath.size()-5),4) == ".xml")
+    if(filePath.toStdString().substr((filePath.size()-4),4).compare(".xml") == 0)
     {
         isXML = true;
-
 
     QFile file(filePath);\
         if (!file.open(QFile::ReadOnly | QFile::Text)){
@@ -178,14 +177,42 @@ void XML_Editor::on_pushButton_5_clicked()
 //JSON Tranformation
 void XML_Editor::on_pushButton_6_clicked()
 {
-
+    if(isXML)
+    {
+    string xmlText = getXmlText();
+    string jsonText = xmlToJson(xmlText);
+    ui->widget->setPlainText(QString::fromStdString(xmlText));
+    isXML = false;
+    }
+    else
+    {
+        QMessageBox::warning(this, "title", "file is not XML format");
+    }
 }
 
 //compress
 void XML_Editor::on_pushButton_7_clicked()
 {
-    isXML = false;
+    if(isXML)
+    {
+        string xmlText = getXmlText();
+        compress(xmlText,xmlText);
+        ui->widget->setPlainText(QString::fromStdString(strBuffer));
+        isXML = false;
+    }
+    else
+    {
+        QMessageBox::warning(this, "title", "file is not XML format");
+    }
+}
 
+//decompress
+void XML_Editor::on_pushButton_4_clicked()
+{
+
+
+    //xml format bool
+    isXML =true;
 }
 
 //search button
@@ -203,6 +230,11 @@ void XML_Editor::on_pushButton_2_clicked()
         while(std::getline(ss,line,'\n')){
             lines.push_back(line);
         }
+    }
+    else
+    {
+         QMessageBox::warning(this, "title", "Enter text to search for");
+        return;
     }
     for(int i = 0;i < (int) lines.size(); i++)
     {
@@ -228,9 +260,4 @@ void XML_Editor::on_pushButton_2_clicked()
 
 }
 
-//decompress
-void XML_Editor::on_pushButton_4_clicked()
-{
-
-}
 
