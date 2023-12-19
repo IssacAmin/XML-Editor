@@ -9,6 +9,6 @@
 #define DECOMPRESS_H_
 
 string decode(Tree* root , int& index ,string file_data);
-void file_decompress();
+string file_decompress();
 
 #endif /* DECOMPRESS_H_ */
