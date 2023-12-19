@@ -1,5 +1,5 @@
 #include "xml_INDENTOR.h"
-void xmlindentor(string& xml_content){
+string xmlindentor(string& xml_content){
 		string edited_line;
 		vector<string> lines;
 		int indent = 0;
@@ -22,9 +22,11 @@ void xmlindentor(string& xml_content){
         }
         	lines.push_back(edited_line);
 		}
-			for(int i=0;i<lines.size();i++){
-				cout<<lines[i]<<endl;
+        string IndentingOutput = "";
+        for(int i=0;i< (int) lines.size();i++){
+            IndentingOutput += (lines[i]+"\n");
 			}
+        return IndentingOutput;
 }
 
 

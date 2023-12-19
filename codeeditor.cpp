@@ -3,7 +3,7 @@
 #include <QPainter>
 #include <QTextBlock>
 #include "ErrorChecking/errorDetectionCorrection.h"
-#include "../xml_editor.h"
+#include "xml_editor.h"
 
 //![constructor]
 

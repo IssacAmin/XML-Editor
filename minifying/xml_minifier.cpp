@@ -1,5 +1,5 @@
 #include "xml_minifier.h"
-void xmlminifier(string& xml_content){
+string xmlminifier(string& xml_content){
 		string line;
 		string oneLineFile = "";
 			vector<string> elements = oneElementPerLine(xml_content);
@@ -11,7 +11,7 @@ void xmlminifier(string& xml_content){
 			element.erase(remove(element.begin(), element.end(), '\v'),element.end());
 			oneLineFile += element;
 }
-			cout<<oneLineFile<<endl;
+            return oneLineFile;
 }
 
 

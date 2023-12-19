@@ -12,6 +12,9 @@
 #include <QMessageBox>
 #include "ErrorChecking/errorDetectionCorrection.h"
 #include <string>
+#include "formatting/xml_INDENTOR.h"
+#include "minifying/xml_minifier.h"
+#include <sstream>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class XML_Editor;
@@ -36,6 +39,18 @@ private slots:
     void on_pushButton_10_clicked();
 
     string getXmlText();
+
+    void on_pushButton_9_clicked();
+
+    void on_pushButton_5_clicked();
+
+    void on_pushButton_6_clicked();
+
+    void on_pushButton_7_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_4_clicked();
 
 private:
     Ui::XML_Editor *ui;

@@ -11,7 +11,7 @@
 
 using namespace std;
 
-void xmlminifier(string& xml_content);
+string xmlminifier(string& xml_content);
 
 
 #endif

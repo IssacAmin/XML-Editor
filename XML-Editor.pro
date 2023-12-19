@@ -12,9 +12,9 @@ SOURCES += \
     ErrorChecking/errorDetectionCorrection.cpp \
     TreeStructure/Node.cpp \
     TreeStructure/xmlTree.cpp \
-    customWidgets/codeeditor.cpp \
+    codeeditor.cpp \
     formatting/xml_INDENTOR.cpp \
-    customWidgets/linenumberarea.cpp \
+    linenumberarea.cpp \
     main.cpp \
     minifying/xml_minifier.cpp \
     utilities/utilities.cpp \
@@ -23,11 +23,11 @@ SOURCES += \
 
 HEADERS += \
     ErrorChecking/errorDetectionCorrection.h \
+    codeeditor.h \
     TreeStructure/Node.h \
     TreeStructure/xmlTree.h \
-    customWidgets/codeeditor.h \
     formatting/xml_INDENTOR.h \
-    customWidgets/linenumberarea.h \
+    linenumberarea.h \
     minifying/xml_minifier.h \
     utilities/utilities.h \
     xml_editor.h \
