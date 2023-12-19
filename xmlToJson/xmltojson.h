@@ -24,7 +24,7 @@ void printTabs(int numberOfTabs) ;
 /*
  * Function that convert the passed XML file path to JSON file
  */
-void xmlToJson(std::string xmlFile) ;
+string xmlToJson(std::string xmlFile) ;
 /*
  * A function that takes the file path from the user and then parse the data in the file to save
  * the data of the file in a tree

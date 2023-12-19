@@ -11,7 +11,9 @@
 #include "..\treeStructure\xmlTree.h"
 #include "..\XML_parsing\XML_parsing.h"
 #include "xmltojson.h"
+#include <stdlib.h>
 
+string JSON_file = "" ;
 //private global tree that can be used only by this file functions
 static xmlTree g_tree  ;
 //private stack to save the closing of each bracket to make sure that each open bracket is closed
@@ -51,7 +53,7 @@ void printTabs(int nOfTabs)
 {
     for(int i = 0 ; i<nOfTabs ; i++)
     {
-        cout<<"    " ;
+        JSON_file += "    " ;
     }
 }
 
@@ -78,7 +80,7 @@ bool is_leaf(Node * current)
 /*
  * Function that convert the passed XML file path to JSON file
  */
-void xmlToJson(string xmlFile)
+string xmlToJson(string xmlFile)
 {
     Node * current = NULL ;
 
@@ -92,9 +94,11 @@ void xmlToJson(string xmlFile)
     if(!g_tree.empty())
     {
         //open the JSON block
-        cout<<"{\n" ;
+    	JSON_file += "{\n" ;
+
         //push the closing of this bracket in the stack
         closingBracketsStack.push('}') ;
+
         //increment the number of tabs for a good indentation of the file
         numberOfTabs++ ;
 
@@ -107,16 +111,17 @@ void xmlToJson(string xmlFile)
         while( !closingBracketsStack.empty())
         {
             numberOfTabs-- ;
-            cout<<endl ;
+            JSON_file += "\n" ;
             printTabs(numberOfTabs) ;
-            cout<< closingBracketsStack.top()  ;
+            JSON_file += closingBracketsStack.top()  ;
             closingBracketsStack.pop() ;
         }
     }
     else
     {
-        cout<<"File is empty!" ;
+    	JSON_file += "File is empty!" ;
     }
+    return JSON_file ;
 }
 
 /*
@@ -157,7 +162,7 @@ void arraysInTree(Node *root)
             }
         }
     }
-    for(int i= 0 ; i < root->getChildren().size() ; i++)
+    for(unsigned int i= 0 ; i < root->getChildren().size() ; i++)
     {
         /********** The recursive call **********/
         arraysInTree(root->getChildren()[i]) ;
@@ -188,7 +193,6 @@ void printArraysName(string xmlFilePath)
 void printFile(Node *root)
 {
     bool extraPopFlag = false ;
-    bool nextElementComma = true ;
 
     printTabs(numberOfTabs) ;
 
@@ -198,7 +202,7 @@ void printFile(Node *root)
      */
     if(root == g_tree.getRoot())
     {
-        cout<<'"' + root->getTagName() + "\": " ;
+    	JSON_file += '"' + root->getTagName() + "\": " ;
     }
     /*
      * if the current node is children to an array then prints then only write its tag name once in each
@@ -207,11 +211,11 @@ void printFile(Node *root)
     {
         if(!g_childFlag)
         {
-            cout<<'"' + root->getTagName() + "\": " ;
+        	JSON_file += '"' + root->getTagName() + "\": " ;
 
             if(root->getParent()->getChildrenNumber() >1)
             {
-                cout<< "[\n" ;
+            	JSON_file += "[\n" ;
                 closingBracketsStack.push(']') ;
                 numberOfTabs++ ;
                 printTabs(numberOfTabs) ;
@@ -222,16 +226,12 @@ void printFile(Node *root)
     }
     else if(!is_Array(root->getParent()) && !is_Array(root))
     {
-        cout<<'"' + root->getTagName() + "\": " ;
-        /*
-         * in case of the current node is not array and its parent is not array
-         * then a comma is required at the end of the line so set the comma flag
-         */
-        nextElementComma = true ;
+    	JSON_file += '"' + root->getTagName() + "\": " ;
+
     }
     else if(!is_Array(root->getParent()) && is_Array(root))
     {
-        cout<<'"' + root->getTagName() + "\": " ;
+    	JSON_file += '"' + root->getTagName() + "\": " ;
 
         if(root->getChildren().size() >1)
             extraPopFlag = true ;
@@ -242,7 +242,7 @@ void printFile(Node *root)
      */
     if( !is_leaf(root) )
     {
-        cout<< "{\n" ;
+    	JSON_file += "{\n" ;
         closingBracketsStack.push('}') ;
         numberOfTabs++ ;
     }
@@ -253,12 +253,12 @@ void printFile(Node *root)
         if(root->getDataInt() == 0)
         {
             //current node data is string
-            cout<<'"' <<root->getDataString() <<'"';
+        	JSON_file = JSON_file + "\"" + root->getDataString() + "\"";
         }
         else
         {
-            //current node data is int
-            cout<<'"' <<root->getDataInt()<<'"' ;
+        	//current node data is int
+        	JSON_file = JSON_file + "\"" + std::to_string( root->getDataInt()) + "\"";
         }
         return ;
     }
@@ -278,23 +278,22 @@ void printFile(Node *root)
             /********* the recursive call **********/
             printFile(root->getChildren()[i]) ;
 
-            /*
-             * if the current node is not the last node to its parent then we need to write comma
-             * to differ between it and the next data
-             */
-            if(i != root->getChildren().size() -1) {
-                cout<<",\n" ;
-            }
-            else {
-                cout<<endl ;
-            }
-            /*
-             * when reaching here it is the end of the sub-tree so we will go back to the parent of this sub-tree
-             * then set the flag to true again
-             */
             if(i == root->getChildren().size() -1)
             {
+                /*
+                 * when reaching here it is the end of the sub-tree so we will go back to the parent of this sub-tree
+                 * then set the flag to true again
+                 */
                 g_childFlag = true ;
+
+            	JSON_file += "\n" ;
+            }
+            else {
+            	/*
+				 * if the current node is not the last node to its parent then we need to write comma
+				 * to differ between it and the next data
+				 */
+            	JSON_file += ",\n" ;
             }
         }
         /*
@@ -305,7 +304,8 @@ void printFile(Node *root)
         {
             numberOfTabs -- ;
             printTabs(numberOfTabs) ;
-            cout<< closingBracketsStack.top() <<endl ;
+            JSON_file = JSON_file + closingBracketsStack.top() + "\n" ;
+
             closingBracketsStack.pop() ;
             extraPopFlag = false ;
         }
@@ -315,7 +315,7 @@ void printFile(Node *root)
          */
         numberOfTabs -- ;
         printTabs(numberOfTabs) ;
-        cout<< closingBracketsStack.top() ;
+        JSON_file += closingBracketsStack.top() ;
         closingBracketsStack.pop() ;
     }
 }
