@@ -36,7 +36,7 @@ void form_huffmancode(string Filedata, Tree root, unordered_map<char,string> &co
 string compress(string File_data);
 void form_priorityQueue();
 extern string strBuffer; // this string contains the encoded data zeroes and ones
-extern vector<char> data;
+extern vector<char> text;
 extern Tree* root;
 #endif // COMPRESS_H_INCLUDED
 
