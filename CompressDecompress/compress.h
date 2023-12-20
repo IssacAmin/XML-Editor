@@ -33,10 +33,10 @@ Tree* set_Node();
 Tree* set_Node(char data, int frequency);
 Tree* set_Node(char data , int frequency , Tree_Node* left, Tree_Node* right);
 void form_huffmancode(string Filedata, Tree root, unordered_map<char,string> &code);
-string compress(string File_data);
+string compress(string File_data , string file_path);
 void form_priorityQueue();
 extern string strBuffer; // this string contains the encoded data zeroes and ones
-extern vector<char> text;
+extern vector<char> data;
 extern Tree* root;
 #endif // COMPRESS_H_INCLUDED
 
