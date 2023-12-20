@@ -9,10 +9,11 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    CompressDecompress/compress.cpp \
+    CompressDecompress/decompress.cpp \
     ErrorChecking/errorDetectionCorrection.cpp \
     TreeStructure/Node.cpp \
     TreeStructure/xmlTree.cpp \
-    XMLcompression/compress.cpp \
     codeeditor.cpp \
     formatting/xml_INDENTOR.cpp \
     linenumberarea.cpp \
@@ -24,8 +25,9 @@ SOURCES += \
     XML_parsing/XML_parsing.cpp \
 
 HEADERS += \
+    CompressDecompress/compress.h \
+    CompressDecompress/decompress.h \
     ErrorChecking/errorDetectionCorrection.h \
-    XMLcompression/compress.h \
     codeeditor.h \
     TreeStructure/Node.h \
     TreeStructure/xmlTree.h \

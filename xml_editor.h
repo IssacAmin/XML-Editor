@@ -16,8 +16,22 @@
 #include "minifying/xml_minifier.h"
 #include <sstream>
 #include "xmlToJson/xmltojson.h"
-#include "XMLcompression/compress.h"
+#include "CompressDecompress/compress.h"
+#include <stack>
+#include <QTextCharFormat>
+#include "CompressDecompress/decompress.h"
 QT_BEGIN_NAMESPACE
+
+typedef struct{
+    int linepos;
+    int lineIndex;
+}TextPosition;
+
+typedef struct{
+    string fileText;
+    bool isXML;
+}UndoRedoStackNode;
+
 namespace Ui {
 class XML_Editor;
 }
@@ -53,6 +67,12 @@ private slots:
     void on_pushButton_2_clicked();
 
     void on_pushButton_4_clicked();
+
+    void on_pushButton_13_clicked();
+
+    void on_pushButton_11_clicked();
+
+    void on_pushButton_12_clicked();
 
 private:
     Ui::XML_Editor *ui;
