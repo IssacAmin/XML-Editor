@@ -1,4 +1,4 @@
-#include "utilities/utilities.h"
+#include "utilities.h"
 
 bool isData(char x) {
 	return ((x >= 'a' && x <= 'z') || (x >= 'A' && x <= 'Z') || (x >= '0' && x <= '9'));
