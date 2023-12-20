@@ -13,7 +13,10 @@
 #include "xmltojson.h"
 #include <stdlib.h>
 
-string JSON_file = "" ;
+/*************************************************************************************
+ *                                 Global Variables	                                 *
+ *************************************************************************************/
+static string JSON_file = "" ;
 //private global tree that can be used only by this file functions
 static xmlTree g_tree  ;
 //private stack to save the closing of each bracket to make sure that each open bracket is closed
@@ -83,6 +86,13 @@ bool is_leaf(Node * current)
 string xmlToJson(string xmlFile)
 {
     Node * current = NULL ;
+
+    /*
+     * each call to this function we need to clear the JSON file string and the tree
+     * to delete the old data as they are global variables
+     */
+    JSON_file = "" ;
+    g_tree.setRoot(NULL) ;
 
     //save the xml file to a tree
     xmlToTree(xmlFile) ;
@@ -192,11 +202,16 @@ void printArraysName(string xmlFilePath)
  */
 void printFile(Node *root)
 {
+	/*
+	 * A flag that is set when the array node open an extra parenthesis
+	 * set to perform extra pop from the stack
+	 */
     bool extraPopFlag = false ;
 
     printTabs(numberOfTabs) ;
 
-    /******* this conditions is responsible for writing the tag name ******/
+    /******* this conditions is responsible for writing the tag name *******/
+
     /*
      * the case the current node is the root of the tree then write its tag name normaly
      */
