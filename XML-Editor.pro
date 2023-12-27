@@ -9,6 +9,8 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    CompressDecompress/compress.cpp \
+    CompressDecompress/decompress.cpp \
     ErrorChecking/errorDetectionCorrection.cpp \
     TreeStructure/Node.cpp \
     TreeStructure/xmlTree.cpp \
@@ -18,18 +20,24 @@ SOURCES += \
     main.cpp \
     minifying/xml_minifier.cpp \
     utilities/utilities.cpp \
-    xml_editor.cpp
+    xmlToJson/xmltojson.cpp \
+    xml_editor.cpp \
+    XML_parsing/XML_parsing.cpp \
 
 HEADERS += \
+    CompressDecompress/compress.h \
+    CompressDecompress/decompress.h \
     ErrorChecking/errorDetectionCorrection.h \
+    codeeditor.h \
     TreeStructure/Node.h \
     TreeStructure/xmlTree.h \
-    codeeditor.h \
     formatting/xml_INDENTOR.h \
     linenumberarea.h \
     minifying/xml_minifier.h \
     utilities/utilities.h \
-    xml_editor.h
+    xmlToJson/xmltojson.h \
+    xml_editor.h \
+    XML_parsing/XML_parsing.h \
 
 FORMS += \
     xml_editor.ui

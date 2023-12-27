@@ -10,7 +10,7 @@
 #include "../utilities/utilities.h"
 using namespace std;
 
-void xmlindentor(fstream& myfile);
+string xmlindentor(string& xml_content);
 
 
 #endif

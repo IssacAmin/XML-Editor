@@ -1,9 +1,9 @@
 #include "xml_INDENTOR.h"
-void xmlindentor(fstream& myfile ){
+string xmlindentor(string& xml_content){
 		string edited_line;
 		vector<string> lines;
 		int indent = 0;
-		vector<string> elements = oneElementPerLine(myfile);
+		vector<string> elements = oneElementPerLine(xml_content);
 		for(string element:elements){
 
 			if (element.substr(0, 2) == "</") {
@@ -14,7 +14,7 @@ void xmlindentor(fstream& myfile ){
     			string str ="/";
     			size_t found = element.find(str);
     			if(found!= string::npos){
-                    indent = indent;
+    				indent=indent;
 				}
 				else{
 					++indent;
@@ -22,9 +22,11 @@ void xmlindentor(fstream& myfile ){
         }
         	lines.push_back(edited_line);
 		}
-        for(int i=0;i<(int) lines.size();i++){
-				cout<<lines[i]<<endl;
+        string IndentingOutput = "";
+        for(int i=0;i< (int) lines.size();i++){
+            IndentingOutput += (lines[i]+"\n");
 			}
+        return IndentingOutput;
 }
 
 

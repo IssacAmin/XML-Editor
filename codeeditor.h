@@ -3,7 +3,6 @@
 
 #include <QPlainTextEdit>
 #include <vector>
-#include "ErrorChecking/errorDetectionCorrection.h"
 
 QT_BEGIN_NAMESPACE
 class QPaintEvent;

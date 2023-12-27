@@ -1,14 +1,17 @@
 
 #include "XML_parsing.h"
 
+<<<<<<< HEAD
 void XML_parsing(xmlTree& tree, string& file){
+=======
+void XML_parsing(xmlTree& tree, string& file) {
+>>>>>>> f99338b8163698451fcba93aabde489ec93f2344
 	string line;
 	vector<string> elements = oneElementPerLine(file);
-	for(string element: elements){
+	for (string element : elements) {
 		textType type = detectType(element);  //Check the type of element in line
-		tagToNode(element,type,tree);		// Convert the tag in line to a node in the tree
+		tagToNode(element, type, tree);		// Convert the tag in line to a node in the tree
 	}
-
 }
 
 textType detectType(string element){
