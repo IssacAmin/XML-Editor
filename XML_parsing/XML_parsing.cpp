@@ -1,11 +1,9 @@
 
 #include "XML_parsing.h"
 
-<<<<<<< HEAD
-void XML_parsing(xmlTree& tree, string& file){
-=======
+
 void XML_parsing(xmlTree& tree, string& file) {
->>>>>>> f99338b8163698451fcba93aabde489ec93f2344
+
 	string line;
 	vector<string> elements = oneElementPerLine(file);
 	for (string element : elements) {

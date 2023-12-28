@@ -1,6 +1,8 @@
 #ifndef XML_EDITOR_H
 #define XML_EDITOR_H
 
+
+
 #include <QMainWindow>
 #include "ui_xml_editor.h"
 #include "customWidgets/codeeditor.h"
@@ -20,6 +22,8 @@
 #include <stack>
 #include <QTextCharFormat>
 #include "CompressDecompress/decompress.h"
+#include "Graph/graph.h"
+#include "visualize/visualize.h"
 QT_BEGIN_NAMESPACE
 
 typedef struct{
@@ -73,6 +77,8 @@ private slots:
     void on_pushButton_11_clicked();
 
     void on_pushButton_12_clicked();
+
+    void on_pushButton_14_clicked();
 
 private:
     Ui::XML_Editor *ui;

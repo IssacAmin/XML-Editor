@@ -1,7 +1,7 @@
 #include "visualize.h"
 
 
-void createGraphVisualization(vector <GraphNode*> v)
+void createGraphVisualization(vector <GraphNode*> v, string filePath)
 {
 	remove("Graph.dot");
 	string temp(1, 34);
@@ -29,15 +29,17 @@ void createGraphVisualization(vector <GraphNode*> v)
 	}
 	dotFile_Str += "}";
 
-	ofstream image("Graph.dot");
+    ofstream image("Graph.dot");
 	image << dotFile_Str;
 	image.close();
 
-//#ifdef _WIN32
-//	system("dot -Tpng -O Graph.dot");
-//
-//#elif _linux_
-//	system("dot -Tpng -O Graph.dot");
-//
-//#endif
+#ifdef _WIN32
+    string x = "dot -Tpng -o "+filePath+" Graph.dot";
+    const char* y = x.c_str();
+    system(y);
+
+#elif _linux_
+    system("dot -Tpng -O Graph.dot");
+
+#endif
 }

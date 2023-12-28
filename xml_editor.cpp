@@ -1,6 +1,6 @@
 #include "xml_editor.h"
-
-
+#include "graphvisulaization.h"
+#include "networkwindow.h"
 
 //global vars
 vector<string> fileContent;
@@ -47,6 +47,8 @@ void XML_Editor::on_pushButton_clicked()
         QTextStream in(&file);
         QString text = in.readAll();
         ui->widget->setPlainText(text);
+        ui->widget->setLineWrapMode(QPlainTextEdit::NoWrap);
+
         undoStack.push({text.toStdString(), true});
         while(!RedoStack.empty())
             RedoStack.pop();
@@ -147,6 +149,7 @@ void XML_Editor::on_pushButton_10_clicked()
 
        string xmlCorrectedText = errorCorrection(errors,fileContent);
        ui->widget->setPlainText(QString::fromStdString(xmlCorrectedText));
+       ui->widget->setLineWrapMode(QPlainTextEdit::NoWrap);
        undoStack.push({xmlCorrectedText, true});
        while(!RedoStack.empty())
            RedoStack.pop();
@@ -168,6 +171,8 @@ void XML_Editor::on_pushButton_9_clicked()
         string fileText = getXmlText();
         string prettyText = xmlindentor(fileText);
         ui->widget->setPlainText(QString::fromStdString(prettyText));
+        ui->widget->setLineWrapMode(QPlainTextEdit::NoWrap);
+
         undoStack.push({prettyText, true});
         while(!RedoStack.empty())
             RedoStack.pop();
@@ -186,6 +191,8 @@ void XML_Editor::on_pushButton_5_clicked()
         string fileText = getXmlText();
         string minifiedText = xmlminifier(fileText);
         ui->widget->setPlainText(QString::fromStdString(minifiedText));
+        ui->widget->setLineWrapMode(QPlainTextEdit::NoWrap);
+
         undoStack.push({minifiedText, true});
         while(!RedoStack.empty())
             RedoStack.pop();
@@ -204,6 +211,8 @@ void XML_Editor::on_pushButton_6_clicked()
     string xmlText = getXmlText();
     string jsonText = xmlToJson(xmlText);
     ui->widget->setPlainText(QString::fromStdString(jsonText));
+    ui->widget->setLineWrapMode(QPlainTextEdit::NoWrap);
+
     undoStack.push({jsonText, false});
     while(!RedoStack.empty())
         RedoStack.pop();
@@ -345,5 +354,44 @@ void XML_Editor::on_pushButton_12_clicked()
 //Graph button
 void XML_Editor::on_pushButton_13_clicked()
 {
+    if(isXML)
+    {
+        string filePath = ui->lineEdit->text().toStdString();
+        string text = XML_Editor::getXmlText();
+        if(text != "")
+        {
+            string newFilePath = "C:\\XML-Editor\\Graph.png";
 
+            adjList = build_Graph(text);
+            createGraphVisualization(adjList,newFilePath);
+            //opening the png in a pop up window
+            GraphVisulaization graph;
+            graph.setModal(true);
+            graph.exec();
+        }
+        else
+        {
+            QMessageBox::warning(this, "title", "There is no text...");
+        }
+    }
+    else
+    {
+        QMessageBox::warning(this, "title", "file is not XML format");
+    }
 }
+
+//network analysis button
+void XML_Editor::on_pushButton_14_clicked()
+{
+    if(isXML)
+    {
+        networkWindow w;
+        w.setModal(true);
+        w.exec();
+    }
+    else
+    {
+        QMessageBox::warning(this, "title", "file is not XML format");
+    }
+}
+

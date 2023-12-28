@@ -12,14 +12,18 @@ SOURCES += \
     CompressDecompress/compress.cpp \
     CompressDecompress/decompress.cpp \
     ErrorChecking/errorDetectionCorrection.cpp \
+    Graph/graph.cpp \
     TreeStructure/Node.cpp \
     TreeStructure/xmlTree.cpp \
     codeeditor.cpp \
     formatting/xml_INDENTOR.cpp \
+    graphvisulaization.cpp \
     linenumberarea.cpp \
     main.cpp \
     minifying/xml_minifier.cpp \
+    networkwindow.cpp \
     utilities/utilities.cpp \
+    visualize/visualize.cpp \
     xmlToJson/xmltojson.cpp \
     xml_editor.cpp \
     XML_parsing/XML_parsing.cpp \
@@ -28,18 +32,24 @@ HEADERS += \
     CompressDecompress/compress.h \
     CompressDecompress/decompress.h \
     ErrorChecking/errorDetectionCorrection.h \
+    Graph/graph.h \
     codeeditor.h \
     TreeStructure/Node.h \
     TreeStructure/xmlTree.h \
     formatting/xml_INDENTOR.h \
+    graphvisulaization.h \
     linenumberarea.h \
     minifying/xml_minifier.h \
+    networkwindow.h \
     utilities/utilities.h \
+    visualize/visualize.h \
     xmlToJson/xmltojson.h \
     xml_editor.h \
     XML_parsing/XML_parsing.h \
 
 FORMS += \
+    graphvisulaization.ui \
+    networkwindow.ui \
     xml_editor.ui
 
 TRANSLATIONS += \
