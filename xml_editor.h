@@ -24,6 +24,7 @@
 #include "CompressDecompress/decompress.h"
 #include "Graph/graph.h"
 #include "visualize/visualize.h"
+
 QT_BEGIN_NAMESPACE
 
 typedef struct{
@@ -35,6 +36,7 @@ typedef struct{
     string fileText;
     bool isXML;
 }UndoRedoStackNode;
+
 
 namespace Ui {
 class XML_Editor;

@@ -5,12 +5,14 @@
 //global vars
 vector<string> fileContent;
 vector<tag> errors;
-bool isXML = true;
+
 
 //global stacks for redo and undo
 stack<UndoRedoStackNode> undoStack;
 stack<UndoRedoStackNode> RedoStack;
 
+ bool isXML = false;
+bool graphisBuilt = false;
 
 XML_Editor::XML_Editor(QWidget *parent)
     : QMainWindow(parent)
@@ -18,6 +20,8 @@ XML_Editor::XML_Editor(QWidget *parent)
 {
     ui->setupUi(this);
     undoStack.push({"", true});
+
+    isXML = false;
 
 }
 
@@ -48,6 +52,7 @@ void XML_Editor::on_pushButton_clicked()
         QString text = in.readAll();
         ui->widget->setPlainText(text);
         ui->widget->setLineWrapMode(QPlainTextEdit::NoWrap);
+
 
         undoStack.push({text.toStdString(), true});
         while(!RedoStack.empty())
@@ -364,6 +369,7 @@ void XML_Editor::on_pushButton_13_clicked()
 
             adjList = build_Graph(text);
             createGraphVisualization(adjList,newFilePath);
+            graphisBuilt =true;
             //opening the png in a pop up window
             GraphVisulaization graph;
             graph.setModal(true);
@@ -385,6 +391,12 @@ void XML_Editor::on_pushButton_14_clicked()
 {
     if(isXML)
     {
+        if(!graphisBuilt)
+        {
+            string text = XML_Editor::getXmlText();
+            adjList = build_Graph(text);
+        }
+
         networkWindow w;
         w.setModal(true);
         w.exec();

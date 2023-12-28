@@ -257,6 +257,13 @@ padding: 5px;
           <height>241</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
        </widget>
       </widget>
      </item>
