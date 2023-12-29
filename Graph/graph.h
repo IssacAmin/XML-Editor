@@ -8,7 +8,7 @@
 #define GRAPH_H_INCLUDED
 #include <iostream>
 #include <vector>
-#include "../utilities/utilities.h"
+#include "utilities/utilities.h"
 #include<string>
 using namespace std;
 typedef struct GraphNode{
